@@ -1,0 +1,174 @@
+# Minor-Projects
+# Simon Says Game
+# Backend in Python
+import random
+import time
+import sys
+
+def display_instructions():
+    print("\nWelcome to Simon Says!")
+    print("Game for Mind!")
+    print("Remember the sequence of items and repeat them.")
+    print("Enter the sequence one item at a time when prompted.")
+    print("Type 'quit' to exit the game.\n")
+
+def generate_random_item():
+    items = [
+        "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Brown", 
+        "Black", "White", "Gray", "Cyan", "Magenta", "Maroon", "Navy", "Teal", 
+        "Lime", "Olive", "Aqua", "Violet", "Indigo", "Coral", "Peach", "Lavender", 
+        "Tan", "Beige", "Mint", "Salmon", "Gold", "Silver", "Bronze", "Crimson", 
+        "Turquoise", "Emerald", "Sapphire", "Ruby", "Amber", "Charcoal", "Rose", 
+        "Plum", "Ivory", "Khaki", "Mustard", "Copper", "Lilac", "Periwinkle", 
+        "Chartreuse", "Burgundy", "Mahogany", "Chocolate", "Sand", "Sky", "Slate", 
+        "Pearl", "Ochre", "Cerulean", "Azure", "Amethyst", "Fuchsia", "Cobalt", 
+        "Lemon", "Apricot", "Mulberry", "Rust", "Seafoam", "Steel", "Berry", 
+        "Blush", "Cream", "Denim", "Pine", "Terracotta", "Brick", "Emerald Green", 
+        "Mint Green", "Forest Green", "Pastel Pink", "Rose Pink", "Bright Yellow", 
+        "Deep Purple", "Light Gray", "Dark Gray", "Hot Pink", "Electric Blue", 
+        "Light Blue", "Dark Blue", "Pale Yellow", "Neon Green", "Teal Green", 
+        "Sea Blue", "Sunset Orange", "Goldenrod", "Baby Blue", "Canary Yellow", 
+        "Taupe", "Desert Sand", "Smoke Gray", "Spring Green", "Royal Blue", 
+        "Midnight Blue", "Lava Red", "Pumpkin Orange"
+    ]
+    return random.choice(items)
+
+def clear_line():
+    """Clear the current line in the terminal."""
+    sys.stdout.write("\033[K")  # ANSI escape code to clear the line
+    sys.stdout.flush()
+
+def display_sequence(sequence):
+    print("\nSimon says:")
+    for item in sequence:
+        print(f"  {item}", end='', flush=True)  # Display the current item
+        time.sleep(1)
+        sys.stdout.write("\r")  # Move to the start of the line
+        clear_line()  # Clear the line entirely
+    print()
+
+def get_user_sequence(length):
+    user_sequence = []
+    print("\nYour turn!")
+    for i in range(length):
+        user_input = input(f"Item {i + 1}: ").strip().lower()
+        if user_input == "quit":
+            return None
+        user_sequence.append(user_input)
+    return user_sequence
+
+def play_game():
+    display_instructions()
+    sequence = []
+    level = 1
+
+    while True:
+        print(f"\n--- Level {level} ---")
+        new_item = generate_random_item()
+        sequence.append(new_item)
+        display_sequence(sequence)
+
+        user_sequence = get_user_sequence(len(sequence))
+        if user_sequence is None:  # Player chose to quit
+            print("\nThanks for playing! Goodbye.")
+            break
+
+        # Convert both sequences to lowercase for case-insensitive comparison
+        if [item.lower() for item in user_sequence] != [item.lower() for item in sequence]:
+            print("\nWrong sequence! Game over.")
+            print(f"You reached Level {level}.")
+            break
+
+        print("\nCorrect! Get ready for the next level.")
+        level += 1
+        time.sleep(1)
+
+if __name__ == "__main__":
+    play_game()
+
+import random
+import time
+import sys
+
+def display_instructions():
+    print("\nWelcome to Simon Says!")
+    print("Game for Mind!")
+    print("Remember the sequence of items and repeat them.")
+    print("Enter the sequence one item at a time when prompted.")
+    print("Type 'quit' to exit the game.\n")
+
+def generate_random_item():
+    items = [
+        "1", "2", "3", "12", "23", "34", 
+"123", "234", "345", "4567", "5678", "6789",
+"1234", "2345", "3456", "45678", "56789", "67890",
+"12345", "23456", "34567", "456789", "567890", "678901",
+"123456", "234567", "345678", "4567890", "5678901", "6789012",
+"1234567", "2345678", "3456789", "45678901", "56789012", "67890123",
+"12345678", "23456789", "34567890", "456789012", "567890123", "678901234",
+"123456789", "234567890", "345678901", "4567890123", "5678901234", "6789012345",
+"1234567890", "2345678901", "3456789012", "45678901234", "56789012345", "67890123456",
+"12345678901", "23456789012", "34567890123", "456789012345", "567890123456", "678901234567",
+"123456789012", "234567890123", "345678901234", "4567890123456", "5678901234567", "6789012345678",
+"1234567890123", "2345678901234", "3456789012345", "45678901234567", "56789012345678", "67890123456789",
+"12345678901234", "23456789012345", "34567890123456", "456789012345678", "567890123456789", "678901234567890",
+"123456789012345", "234567890123456", "345678901234567", "4567890123456789", "5678901234567890", "6789012345678901",
+"1234567890123456", "2345678901234567", "3456789012345678", "45678901234567890", "56789012345678901", "67890123456789012",
+"12345678901234567", "23456789012345678", "34567890123456789", "456789012345678901", "567890123456789012", "678901234567890123",
+"123456789012345678", "234567890123456789", "345678901234567890", "4567890123456789012", "5678901234567890123", "6789012345678901234"
+
+    ]
+    return random.choice(items)
+
+def clear_line():
+    """Clear the current line in the terminal."""
+    sys.stdout.write("\033[K")  # ANSI escape code to clear the line
+    sys.stdout.flush()
+
+def display_sequence(sequence):
+    print("\nSimon says:")
+    for item in sequence:
+        print(f"  {item}", end='', flush=True)  # Display the current item
+        time.sleep(1)
+        sys.stdout.write("\r")  # Move to the start of the line
+        clear_line()  # Clear the line entirely
+    print()
+
+def get_user_sequence(length):
+    user_sequence = []
+    print("\nYour turn!")
+    for i in range(length):
+        user_input = input(f"Item {i + 1}: ").strip().lower()
+        if user_input == "quit":
+            return None
+        user_sequence.append(user_input)
+    return user_sequence
+
+def play_game():
+    display_instructions()
+    sequence = []
+    level = 1
+
+    while True:
+        print(f"\n--- Level {level} ---")
+        new_item = generate_random_item()
+        sequence.append(new_item)
+        display_sequence(sequence)
+
+        user_sequence = get_user_sequence(len(sequence))
+        if user_sequence is None:  # Player chose to quit
+            print("\nThanks for playing! Goodbye.")
+            break
+
+        # Convert both sequences to lowercase for case-insensitive comparison
+        if [item.lower() for item in user_sequence] != [item.lower() for item in sequence]:
+            print("\nWrong sequence! Game over.")
+            print(f"You reached Level {level}.")
+            break
+
+        print("\nCorrect! Get ready for the next level.")
+        level += 1
+        time.sleep(1)
+
+if __name__ == "__main__":
+    play_game()
